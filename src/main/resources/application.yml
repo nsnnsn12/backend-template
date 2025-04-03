@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: backend-template #need to change this to your project name
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mydb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: user
+    password: password
+    driver-class-name: org.postgresql.Driver
