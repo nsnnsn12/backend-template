@@ -1,4 +1,4 @@
-package com.mstar.backend_template.your_application;
+package com.mstar.backend_template.your_application.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +17,12 @@ public class TestController {
         if (id == 0) {
             throw new TestDataNotFoundException(id);
         }
-        ApiResponse<String> response = new ApiResponse<>();
-        response.setData("Hello, World!");
-        response.setStatusCode(200);
-        response.setMessage("Hello, World! 조회 성공");
+        ApiResponse<String> response = ApiResponse
+        .<String>builder()
+        .data("Hello, World!")
+        .statusCode(200)
+        .message("Hello, World! 조회 성공")
+        .build();
         return ResponseEntity.ok(response);
     }
 }
