@@ -84,7 +84,6 @@ public class DashBoardController {
         ApiResponse<List<SearchCarHistoryDto>> response = ApiResponse
                 .<List<SearchCarHistoryDto>>builder()
                 .data(searchCarHistoryList)
-                .statusCode(200)
                 .message("로그인 성공")
                 .build();
         return ResponseEntity.ok(response);

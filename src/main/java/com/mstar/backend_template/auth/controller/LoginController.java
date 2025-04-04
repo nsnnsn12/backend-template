@@ -29,20 +29,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class LoginController {
     private final AuthenticationManager authenticationManager;
     private final HttpSessionSecurityContextRepository securityContextRepository = new HttpSessionSecurityContextRepository();
-    private final SecurityContextHolderStrategy securityContextHolderStrategy = SecurityContextHolder.getContextHolderStrategy();
+    private final SecurityContextHolderStrategy securityContextHolderStrategy = SecurityContextHolder
+            .getContextHolderStrategy();
+
     @PostMapping
-    public ResponseEntity<ApiResponse<UserInfoDto>> login(@RequestBody LoginRequest loginRequest, HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<ApiResponse<UserInfoDto>> login(@RequestBody LoginRequest loginRequest,
+            HttpServletRequest request, HttpServletResponse response) {
+        log.info("로그인 요청");
         Authentication authenticationRequest = UsernamePasswordAuthenticationToken
                 .unauthenticated(loginRequest.username(), loginRequest.password());
 
         Authentication authenticationResponse = this.authenticationManager.authenticate(authenticationRequest);
-
         SecurityContext context = this.securityContextHolderStrategy.createEmptyContext();
         context.setAuthentication(authenticationResponse);
         this.securityContextHolderStrategy.setContext(context);
         this.securityContextRepository.saveContext(context, request, response);
 
-        log.info("로그인 요청");
         UserInfoDto userInfo = UserInfoDto.builder()
                 .username("노성규")
                 .email("sunggyudev@gmail.com")
@@ -52,7 +54,6 @@ public class LoginController {
         ApiResponse<UserInfoDto> result = ApiResponse
                 .<UserInfoDto>builder()
                 .data(userInfo)
-                .statusCode(200)
                 .message("로그인 성공")
                 .build();
         return ResponseEntity.ok(result);

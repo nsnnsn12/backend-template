@@ -20,7 +20,6 @@ public class TestController {
         ApiResponse<String> response = ApiResponse
         .<String>builder()
         .data("Hello, World!")
-        .statusCode(200)
         .message("Hello, World! 조회 성공")
         .build();
         return ResponseEntity.ok(response);
