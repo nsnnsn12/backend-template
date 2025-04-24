@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mstar.backend_template.auth.controller.dto.UserInfoDto;
 import com.mstar.backend_template.common.ApiResponse;
 import com.mstar.backend_template.dashboard.controller.dto.SearchCarHistoryDto;
+import com.mstar.backend_template.your_application.error.TestDataNotFoundException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -84,9 +85,11 @@ public class DashBoardController {
         ApiResponse<List<SearchCarHistoryDto>> response = ApiResponse
                 .<List<SearchCarHistoryDto>>builder()
                 .data(searchCarHistoryList)
-                .message("로그인 성공")
+                .message("차량 검색 이력 조회 성공")
                 .build();
-        return ResponseEntity.ok(response);
+
+        throw new TestDataNotFoundException(2L);
+        // return ResponseEntity.ok(response);
     }
 
 }

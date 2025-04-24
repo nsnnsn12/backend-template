@@ -9,5 +9,8 @@ Content-Type: application/json; charset=UTF-8
 
 {
   "username": "user",
-  "password": "password"
+  "password": "password123"
 }
+
+###
+GET http://localhost:8080/dashboard/searchCarHistory HTTP/1.1

@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(TestDataNotFoundException.class)
     public ResponseEntity<ApiErrorResponse> handleTestDataNotFound(TestDataNotFoundException ex) {
         ApiErrorResponse errorResponse = new ApiErrorResponse();
-        errorResponse.setMessage("Test data not found");
+        errorResponse.setMessage("데이터를 찾을 수 없습니다.");
         errorResponse.setErrorDetails(ex.getMessage());
         return ResponseEntity.status(404).body(errorResponse);
     }
@@ -26,8 +26,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiErrorResponse> handleAuthenticationException(AuthenticationException ex) {
         log.info("로그인 실패");
         ApiErrorResponse errorResponse = new ApiErrorResponse();
-        errorResponse.setMessage("Login failed");
-        errorResponse.setErrorDetails("존재하지 않는 아이디 또는 비밀번호입니다.");
+        errorResponse.setMessage("존재하지 않는 아이디 또는 비밀번호입니다.");
+        errorResponse.setErrorDetails(ex.getMessage());
         return ResponseEntity.status(403).body(errorResponse);
     }
 }
